@@ -139,3 +139,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = '%s/static/' % (BASE_DIR,)
