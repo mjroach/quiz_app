@@ -1,0 +1,67 @@
+{% extends "quiz/base.html" %}
+
+
+{% block content %}
+
+    <div class="body-main">
+        <h1>{{ quiz.name }}</h1>
+        <h3>{{ quiz.description }}</h3>
+        <p>{{ quiz.content }}</p>
+
+        {% if not graded %}
+            <form action="." method="post">
+                {% csrf_token %}
+                {{ questions.management_form }}
+                <h2>Questions:</h2>
+                {% for question in questions %}
+
+                    {% if question.errors %}
+                        <div class="panel panel-danger">
+                    {% else %}
+                        <div class="panel panel-primary">
+                    {% endif %}
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ question.text.value }}</h3>
+                </div>
+                <div class="panel-body">
+                    {{ question.text.as_hidden }}
+
+                    {{ question.boolfield }}
+                </div>
+                </div>
+
+                {% endfor %}
+                <input class="btn btn-primary" type="submit" value="Submit"/>
+            </form>
+
+        {% else %}
+            <h2>Grade: {{ grade|floatformat }}%</h2>
+            {% for question in graded %}
+
+                {% if not question.correct %}
+                    <div class="panel panel-danger">
+                {% else %}
+                    <div class="panel panel-primary">
+                {% endif %}
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ question.text }}</h3>
+            </div>
+            <div class="panel-body">
+                <p>Correct Answer: {{ question.correct_answer }}</p>
+
+                <p>Inputted Answer: {{ question.input_answer }}</p>
+
+            </div>
+            </div>
+
+            {% endfor %}
+            <a href="." class="btn btn-primary" role="button">Try Again</a>
+            <a href="/" class="btn btn-primary" role="button">Go Home</a>
+
+
+        {% endif %}
+
+        </div>
+    </div>
+
+{% endblock %}

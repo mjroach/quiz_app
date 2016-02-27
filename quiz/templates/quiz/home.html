@@ -1,0 +1,25 @@
+{% extends "quiz/base.html" %}
+
+
+{% block content %}
+
+    <div class="body-main">
+
+
+        {% if all_quizes|length == 0 %}
+            <h1>No Quizzes Loaded, please come back later.</h1>
+        {% else %}
+            <h1>Select a Quiz:</h1>
+        {% endif %}
+
+        {% for quiz in all_quizes %}
+            <div class="well">
+                <h3>{{ quiz.name }}</h3>
+                <h4>{{ quiz.description }}</h4>
+                <p><a class="btn btn-primary btn-lg" href="/take_quiz/{{ quiz.pk }}" role="button">Take Quiz</a></p>
+            </div>
+
+        {% endfor %}
+    </div>
+
+{% endblock %}

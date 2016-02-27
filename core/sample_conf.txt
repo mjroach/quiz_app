@@ -1,0 +1,11 @@
+[DEFAULT]
+
+DB_PORT = 5432
+
+[ENVIRONMENT]
+DB_NAME = <database name>
+DB_USER = <database user>
+DB_HOST = <host>
+DB_PASSWORD = <password>
+
+
