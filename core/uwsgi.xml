@@ -1,11 +1,10 @@
-<uwsgi>
-  <daemonize>/tmp/uwsgi.log</daemonize>
+<uwsgi><daemonize>/tmp/uwsgi.log</daemonize>
   <master/>
   <workers>2</workers>
   <processes>2</processes>
   <harakiri>50</harakiri>
   <socket>/tmp/uwsgi.sock</socket>
   <chdir>/home/ubuntu/quiz_app</chdir>
-  <module>django_wsgi</module>
+  <module>wsgi</module>
   <pidfile>/tmp/uwsgi.pid</pidfile>
 </uwsgi>
